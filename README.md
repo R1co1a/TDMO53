@@ -4,6 +4,8 @@ L'objectif de ce TD est d'utiliser git en équipe pour restructurer un programme
 
 En l'état du du début du TD, le programme fonctionne (plus ou moins), permet de lire depuis un fichier binaire ou texte, de stocker dans une structure soit à base de `vector`, soit à base de liste chaînée, et d'écrire le résultat dans un fichier texte, binaire, ou sur la sortie standard.
 
+Le changement de type de stockage, de calcul, et des formats d'entrée et de sortie se fait en modifiant le code.
+
 ## Constitution des équipes
 
 Pour réaliser ce travail, vous constituerez des équipes de 3 à 4 étudiants. Il est préférable que chaque équipe comporte au moins un membre familiarisé avec C++, de préférence au moins le standard C++11.

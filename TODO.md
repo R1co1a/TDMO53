@@ -57,7 +57,7 @@ public:
 };
 ```
 
-Simplement, le manager crée (grâce aux factories), une instance de chaque élément nécessaire (il pourrait y en avoir plus ou moins), puis instancie un objet de type process auquel chaque instance des éléments requis. Puis, le main appelle la méthode `execute` qui fait les appels aux différentes étapes :
+Simplement, le manager crée (grâce aux factories), une instance de chaque élément nécessaire (il pourrait y en avoir plus ou moins), puis instancie un objet de type process auquel chaque instance des éléments requis. Puis, le main appelle la méthode `execute` qui réalise les appels aux différentes étapes :
 
 ```cpp
 void process::execute() {
