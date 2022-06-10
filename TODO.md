@@ -57,6 +57,8 @@ public:
 };
 ```
 
+Il sera nécessaire, notamment pour le `storage_type`, d'exposer les méthodes communes aux classes sous-jacentes (opérateur d'accès `[]`, begin, end, iterator, etc.) pour permettre l'accès à ces méthodes au travers de l'interface.
+
 Simplement, le manager crée (grâce aux factories), une instance de chaque élément nécessaire (il pourrait y en avoir plus ou moins), puis instancie un objet de type process auquel chaque instance des éléments requis. Puis, le main appelle la méthode `execute` qui réalise les appels aux différentes étapes :
 
 ```cpp
