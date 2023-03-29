@@ -18,4 +18,4 @@ Si vous peinez à trouver les évolutions du code nécessaires, vous pouvez vous
 
 ## Livrable
 
-Vous déposerez votre travail sur un dépôt git. Il sera notamment nécessaire que l'historique des contributions soit visible pour me permettre d'évaluer votre capacité à utiliser git dans le cadre d'un travail en équipe. Il vous sera nécessaire pour cela de commiter vos contributions avec l'option `--no-ff` 
+Vous déposerez votre travail sur un dépôt git. Il sera notamment nécessaire que l'historique des contributions soit visible pour me permettre d'évaluer votre capacité à utiliser git dans le cadre d'un travail en équipe. Il vous sera nécessaire pour cela de commiter vos contributions avec l'option `--no-ff`
