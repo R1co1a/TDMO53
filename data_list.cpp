@@ -23,7 +23,7 @@ values_list::values_list(const values_list &other) {
 }
 
 values_list &values_list::operator=(const values_list &other) {
-    clear_list();
+    clear();
     list_element *ptr = other._head;
     while (ptr) {
         push_back(ptr->get_value());
@@ -32,7 +32,7 @@ values_list &values_list::operator=(const values_list &other) {
     return *this;
 }
 
-void values_list::clear_list() {
+void values_list::clear() {
     list_element *tmp = _head;
     while (tmp) {
         _head = tmp->get_next();
@@ -109,7 +109,7 @@ void values_list::sort_list(bool ascending) { // Naive sort
 }
 
 void data_list::from_text(const std::string &source) {
-    _values.clear_list();
+    _values.clear();
     ifstream f{source};
     if (f.is_open()) {
         array<char, 100> buffer;
@@ -122,7 +122,7 @@ void data_list::from_text(const std::string &source) {
 }
 
 void data_list::from_binary(const std::string &source) {
-    _values.clear_list();
+    _values.clear();
     ifstream f{source, std::ios::binary};
     if (f.is_open()) {
         double buffer;
