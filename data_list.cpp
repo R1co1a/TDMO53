@@ -84,9 +84,8 @@ double values_list::get_value(size_t position) const {
         ptr = ptr->get_next();
         ++pos;
     }
-    // Error case: position out of bounds
-    // manque un return 
-    return -1;
+    // Error case: position out of bounds 
+    return -1; // need to add a return otherwise there is a warning
 }
 
 void values_list::sort_list(bool ascending) { // Naive sort
