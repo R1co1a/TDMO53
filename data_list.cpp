@@ -17,22 +17,22 @@ data_list::data_list(const data_list &other) {
 values_list::values_list(const values_list &other) {
     list_element *ptr = other._head;
     while (ptr) {
-        add_value(ptr->get_value());
+        push_back(ptr->get_value());
         ptr = ptr->get_next();
     }
 }
 
 values_list &values_list::operator=(const values_list &other) {
-    clear_list();
+    clear();
     list_element *ptr = other._head;
     while (ptr) {
-        add_value(ptr->get_value());
+        push_back(ptr->get_value());
         ptr = ptr->get_next();
     }
     return *this;
 }
 
-void values_list::clear_list() {
+void values_list::clear() {
     list_element *tmp = _head;
     while (tmp) {
         _head = tmp->get_next();
@@ -42,7 +42,7 @@ void values_list::clear_list() {
     _head = _tail = nullptr;
 }
 
-void values_list::add_value(double v) {
+void values_list::push_back(double v) {
     if (!_head) {
         _head = new list_element(v);
         _tail = _head;
@@ -84,7 +84,8 @@ double values_list::get_value(size_t position) const {
         ptr = ptr->get_next();
         ++pos;
     }
-    // Error case: position out of bounds
+    // Error case: position out of bounds 
+    return -1; // need to add a return otherwise there is a warning
 }
 
 void values_list::sort_list(bool ascending) { // Naive sort
@@ -107,12 +108,12 @@ void values_list::sort_list(bool ascending) { // Naive sort
 }
 
 void data_list::from_text(const std::string &source) {
-    _values.clear_list();
+    _values.clear();
     ifstream f{source};
     if (f.is_open()) {
         array<char, 100> buffer;
         while (f.getline(&buffer[0], 100)) {
-            _values.add_value(stold(string{buffer.data()}));
+            _values.push_back(stold(string{buffer.data()}));
         }
     } else {
         throw ios_base::failure("File cannot be opened for reading.");
@@ -120,12 +121,12 @@ void data_list::from_text(const std::string &source) {
 }
 
 void data_list::from_binary(const std::string &source) {
-    _values.clear_list();
+    _values.clear();
     ifstream f{source, std::ios::binary};
     if (f.is_open()) {
         double buffer;
         while (f.read(reinterpret_cast<char *>(&buffer), sizeof(double))) {
-            _values.add_value(buffer);
+            _values.push_back(buffer);
         }
     } else  {
         throw ios_base::failure("File cannot be opened for reading.");
@@ -166,11 +167,11 @@ data_list data_list::moving_average(size_t window_width) {
         for (size_t i=0; i<window_width; ++i) {
             current_sum += _values.get_value(i);
         }
-        result._values.add_value(current_sum/window_width);
+        result._values.push_back(current_sum/window_width);
         for (size_t i=0; i+window_width<_values.size(); ++i) {
             current_sum -= _values.get_value(i);
             current_sum += _values.get_value(i+window_width);
-            result._values.add_value(current_sum/window_width);
+            result._values.push_back(current_sum/window_width);
         }
     }
     return result;
@@ -185,7 +186,7 @@ data_list data_list::sort_table(bool ascending) {
 data_list data_list::average() {
     data_list result;
     data_list sum_table = table_sum();
-    result._values.add_value(sum_table._values.get_value(0) / _values.size());
+    result._values.push_back(sum_table._values.get_value(0) / _values.size());
     return result;
 }
 
@@ -195,12 +196,12 @@ data_list data_list::table_sum() {
     for (size_t i=0; i<_values.size(); ++i) {
         current_sum += _values.get_value(i);
     }
-    result._values.add_value(current_sum);
+    result._values.push_back(current_sum);
     return result;
 }
 
 data_list data_list::table_count() {
     data_list result;
-    result._values.add_value(static_cast<double>(_values.size()));
+    result._values.push_back(static_cast<double>(_values.size()));
     return result;
 }
