@@ -34,7 +34,7 @@ public:
     values_list &operator=(const values_list &other);
 
     void clear_list();
-    void add_value(double v); // Always add at the end
+    void push_back(double v); // Always add at the end
     void pop_element(); // Remove last element
     size_t size()const;
     double get_value(size_t position)const;
